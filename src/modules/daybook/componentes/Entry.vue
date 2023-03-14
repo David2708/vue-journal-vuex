@@ -5,20 +5,53 @@
 
     <!-- Titulo -->
     <div class="entry-title d-flex">
-      <span class="text-success fs-5 fw-bold">15</span>
-      <span class="mx-1 fs-5">Julio</span>
-      <span class="mx-1 fw-light">2021, Jueves</span>
+      <span class="text-success fs-5 fw-bold">{{day}}</span>
+      <span class="mx-1 fs-5">{{months}}</span>
+      <span class="mx-1 fw-light">{{yearDay}}</span>
     </div>
 
     <div class="entry-description">
-      Aute culpa nostrud excepteur laboris eiusmod minim nulla ex voluptate magna reprehenderit duis. Enim exercitation officia duis eu. Labore anim nisi amet proident aute consectetur adipisicing nostrud consectetur do sunt irure. Eiusmod id adipisicing in qui dolor in commodo ea. Esse elit tempor aute et non. Veniam pariatur adipisicing cillum aliqua id fugiat quis in.
+      {{ shorText }}
     </div>
 
   </div>
 </template>
 
 <script>
+
+const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio','Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+const days   = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado']
+
 export default {
+
+  props:{
+    entry:{
+      type: Object,
+      required: true
+    }
+  },
+
+  computed: {
+    shorText(){
+      return (this.entry.text.length > 130)
+            ? this.entry.text.substring(0,130) + '...'
+            : this.entry.text
+    },
+    day(){
+      const date = new Date( this.entry.date )
+      return date.getDate()
+    },
+    months(){
+      const date = new Date( this.entry.date )
+      return months[date.getMonth()]
+    },
+    yearDay(){
+      const date = new Date( this.entry.date )
+      return `${ date.getFullYear() }, ${ days[ date.getDay() ] }`
+    },
+
+
+  }
 
 }
 </script>
