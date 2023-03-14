@@ -26,7 +26,7 @@
         <textarea placeholder="¿Qué sicedió hoy?"></textarea>
     </div>
 
-    <Fab/>
+    <Fab icon="fa-save" />
 
     <img
       src="https://www.dzoom.org.es/wp-content/uploads/2017/07/seebensee-2384369.jpg"
